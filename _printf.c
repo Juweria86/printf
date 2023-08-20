@@ -53,6 +53,9 @@ int _printf(const char *format, ...)
 					s = va_arg(args, char *);
 					print_char += write(1, s, _strlen(s));
 					break;
+				default:
+					va_end(args);
+					return (-1);
 			}
 		}
 		format++;
