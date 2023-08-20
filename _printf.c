@@ -54,8 +54,9 @@ int _printf(const char *format, ...)
 					print_char += write(1, s, _strlen(s));
 					break;
 				default:
-					va_end(args);
-					return (-1);
+					write(1, format - 1, 2);
+					print_char += 2;
+					break;
 			}
 		}
 		format++;
