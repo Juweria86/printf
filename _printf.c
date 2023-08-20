@@ -34,7 +34,7 @@ int _putchar(char c)
 int print_string(char *s)
 {
 	if (s == NULL)
-		s = "null";
+		s = "(null)";
 	return (write(1, s,  _strlen(s)));
 }
 /**
