@@ -28,8 +28,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-	if (*format == '\0')
-		return (-1);
 	va_start(args, format);
 	while (*format)
 	{
@@ -41,6 +39,8 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
+			if (*format == '\0')
+				break;
 			switch (*format)
 			{
 				case '%':
