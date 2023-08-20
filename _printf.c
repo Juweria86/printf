@@ -16,7 +16,7 @@ int _strlen(char *s)
 	return (len);
 }
 /**
- * _putchar - writes the character c to stdout
+ *  _putchar - writes the character c to stdout
  * @c: The character to print
  *
  * Return: On success 1.
@@ -24,7 +24,7 @@ int _strlen(char *s)
  */
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+        return (write(1, &c, 1));
 }
 /**
  * print_string  - prints string
@@ -36,6 +36,27 @@ int print_string(char *s)
 	if (s == NULL)
 		s = "(null)";
 	return (write(1, s,  _strlen(s)));
+}
+/**
+ * print_number -prints integers.
+ * @n: an integer
+ */
+void print_number(int n)
+{
+        unsigned int i;
+
+        i = n;
+
+        if (n < 0)
+        {
+                _putchar('-');
+                i = -i;
+        }
+        if (i / 10)
+        {
+                print_number(i / 10);
+        }
+        _putchar(i % 10 + '0');
 }
 /**
  * _printf - produces output according to a format
@@ -63,8 +84,15 @@ int _printf(const char *format, ...)
 				return (-1);
 			switch (*format)
 			{
+
 				case '%':
 					print_char += _putchar('%');
+					break;
+				case 'd':
+					print_number(va_arg(args,int));
+					break;
+				case 'i':
+					print_number(va_arg(args, int));
 					break;
 				case 'c':
 					print_char += _putchar(va_arg(args, int));
