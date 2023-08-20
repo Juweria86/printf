@@ -38,6 +38,29 @@ int print_string(char *s)
 	return (write(1, s,  _strlen(s)));
 }
 /**
+ * print_number -prints integers.
+ * @n: an integer
+ * Return: i
+ */
+int print_number(int n)
+{
+	unsigned int i;
+
+	i = n;
+
+	if (n < 0)
+	{
+		_putchar('-');
+		i = -i;
+	}
+	if (i / 10)
+	{
+		print_number(i / 10);
+	}
+	_putchar(i % 10 + '0');
+	return (i);
+}
+/**
  * _printf - produces output according to a format
  * @format: character string
  * Return: number of chracters printed
@@ -67,15 +90,17 @@ int _printf(const char *format, ...)
 				case '%':
 					print_char += _putchar('%');
 					break;
+				case 'd':
+				case 'i':
+					print_char += print_number(va_arg(args, int));
+					break;
 				case 'c':
 					print_char += _putchar(va_arg(args, int));
 					break;
 				case 's':
+
 					print_char += print_string(va_arg(args, char *));
 					break;
-				default:
-					print_char += _putchar('%');
-					print_char += _putchar(*format);
 			}
 		}
 		format++;
