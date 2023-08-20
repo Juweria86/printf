@@ -33,29 +33,25 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			write(1, format, 1);
-			print_char++;
+			print_char += write(1, format, 1);
 		}
 		else
 		{
 			format++;
 			if (*format == '\0')
-				break;
+				return (-1);
 			switch (*format)
 			{
 				case '%':
-					write(1, format, 1);
-					print_char++;
+					print_char += write(1, format, 1);
 					break;
 				case 'c':
 					value = va_arg(args, int);
-					write(1, &value, 1);
-					print_char++;
+					print_char += write(1, &value, 1);
 					break;
 				case 's':
 					s = va_arg(args, char *);
-					write(1, s, _strlen(s));
-					print_char += _strlen(s);
+					print_char += write(1, s, _strlen(s));
 					break;
 			}
 		}
