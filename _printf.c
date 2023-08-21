@@ -29,6 +29,8 @@ int _printf(const char *format, ...)
 				print_string(va_arg(args, char *));
 			else if (*format == 'd' || *format == 'i')
 				print_number(va_arg(args, int));
+			else if (*format == 'b')
+				print_binary(va_arg(args, unsigned int));
 		}
 		else
 		{
