@@ -8,8 +8,6 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int print_char = 0;
-	char buffer[BUFF_SIZE];
-	int buff_index = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -18,36 +16,26 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			buffer[buff_index] = _putchar(*format);
-
+			print_char += _putchar(*format);
 		}
 		else
 		{
 			format++;
 			if (*format == '\0')
 				return (-1);
-			switch (*format)
+			if (*format == ' ')
+				return (-1);
+			if (*format == '%')
+				print_char += _putchar('%');
+			else if (*format == 'c')
+				print_char += _putchar(va_arg(args, int));
+			else if (*format == 's')
+				print_char += print_string(va_arg(args, char *));
+			else if (*format == 'd' || *format == 'i')
 			{
-
-				case '%':
-					 _putchar('%');
-					break;
-				case 'c':
-					_putchar(va_arg(args, int));
-					break;
-				case 'i':
-				case 'd':
-					print_number(va_arg(args, int));
-					break;
-				case 's':
-
-					print_string(va_arg(args, char *));
-					break;
-				default:
-					buff_index= _putchar(*format);
-					break;
+				print_number(va_arg(args, int));
+				print_char++;
 			}
-			
 		}
 		format++;
 	}

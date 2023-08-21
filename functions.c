@@ -18,13 +18,13 @@ int _strlen(char *s)
 /**
  *  _putchar - writes the character c to stdout
  * @c: The character to print
- *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
+
 }
 /**
  * print_string  - prints string
@@ -43,18 +43,41 @@ int print_string(char *s)
  */
 void print_number(int n)
 {
-	unsigned int n1;
+	int tmp_n = n;
+	int count = 0;
+	int n1 = 0;
+	int index, i = 0;
+	char digits[12];
 
-	n1 = n;
 
+	if (n == 0)
+	{
+		_putchar('0');
+		count++;
+		return;
+	}
 	if (n < 0)
 	{
 		_putchar('-');
-		n1 = -n;
+		tmp_n = -n;
 	}
-	if (n1 / 10 != 0)
+	while (tmp_n != 0)
 	{
-		print_number(n1 / 10);
+		tmp_n /= 10;
+		n1++;
 	}
-	_putchar('0' + (n1 % 10));
+	index = n1 - 1;
+	tmp_n = n < 0 ? -n : n;
+	while (tmp_n != 0)
+	{
+		digits[index] = tmp_n % 10 + '0';
+		tmp_n /= 10;
+		index--;
+	}
+	while (i < n1)
+	{
+		_putchar(digits[i]);
+		count++;
+		i++;
+	}
 }
