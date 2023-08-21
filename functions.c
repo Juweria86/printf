@@ -6,14 +6,14 @@
  */
 int _strlen(char *s)
 {
-        int len = 0;
+	int len = 0;
 
-        while (*s != '\0')
-        {
-                len++;
-                s++;
-        }
-        return (len);
+	while (*s != '\0')
+	{
+		len++;
+		s++;
+	}
+	return (len);
 }
 /**
  *  _putchar - writes the character c to stdout
@@ -24,7 +24,7 @@ int _strlen(char *s)
  */
 int _putchar(char c)
 {
-        return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 /**
  * print_string  - prints string
@@ -33,7 +33,7 @@ int _putchar(char c)
  */
 int print_string(char *s)
 {
-        if (s == NULL)
-                s = "(null)";
-        return (write(1, s,  _strlen(s)));
+	if (s == NULL)
+		s = "(null)";
+	return (write(1, s,  _strlen(s)));
 }
