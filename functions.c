@@ -46,7 +46,7 @@ void print_number(int n)
 	int tmp_n = n;
 	int n1 = 0;
 	int index, i = 0;
-	char digits[12];
+	char digits[9];
 
 
 	if (n == 0)
@@ -58,7 +58,6 @@ void print_number(int n)
 	{
 		_putchar('-');
 		tmp_n = -n;
-		n1++;
 	}
 	while (tmp_n != 0)
 	{
