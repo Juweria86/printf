@@ -35,7 +35,7 @@ int print_string(char *s)
 {
 	if (s == NULL)
 		s = "(null)";
-	return (write(1, s,  _strlen(s)));
+	return (write(1, s, _strlen(s)));
 }
 /**
  * print_number -function that prints an integer
@@ -44,7 +44,6 @@ int print_string(char *s)
 void print_number(int n)
 {
 	int tmp_n = n;
-	int count = 0;
 	int n1 = 0;
 	int index, i = 0;
 	char digits[12];
@@ -53,13 +52,13 @@ void print_number(int n)
 	if (n == 0)
 	{
 		_putchar('0');
-		count++;
 		return;
 	}
 	if (n < 0)
 	{
 		_putchar('-');
 		tmp_n = -n;
+		n1++;
 	}
 	while (tmp_n != 0)
 	{
@@ -77,7 +76,6 @@ void print_number(int n)
 	while (i < n1)
 	{
 		_putchar(digits[i]);
-		count++;
 		i++;
 	}
 }
