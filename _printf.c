@@ -14,28 +14,33 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format == '%')
+		if (*format != '%')
+			print_char += _putchar(*format);
+		else
 		{
 			format++;
 			if (*format == '\0')
 				return (-1);
-			if (*format == ' ')
-				return (-1);
-			if (*format == '%')
-				_putchar('%');
-			else if (*format == 'c')
-				_putchar(va_arg(args, int));
-			else if (*format == 's')
-				print_string(va_arg(args, char *));
-			else if (*format == 'd' || *format == 'i')
-				print_number(va_arg(args, int));
-			else if (*format == 'b')
-				print_binary(va_arg(args, unsigned int));
-		}
-		else
-		{
-			_putchar (*format);
-			print_char++;
+			switch (*format)
+			{
+				case '%':
+					print_char += _putchar('%');
+					break;
+				case 'c':
+					print_char += _putchar(va_arg(args, int));
+					break;
+				case 's':
+					print_char += print_string(va_arg(args, char *));
+					break;
+				case 'i':
+				case 'd':
+					print_number(va_arg(args, int));
+					break;
+				default:
+					print_char += _putchar('%');
+					print_char += _putchar(*format);
+					break;
+			}
 		}
 		format++;
 	}
