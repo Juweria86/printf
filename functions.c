@@ -40,6 +40,7 @@ int print_string(char *s)
 /**
  * print_number -function that prints an integer
  * @n: an integer
+ * Return: n1
  */
 int print_number(int n)
 {
