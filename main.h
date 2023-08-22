@@ -11,7 +11,7 @@
 int _printf(const char *format, ...);
 int _putchar(char c);
 int print_string(char *s);
-void print_number(int count);
+int print_number(int n);
 int _strlen(char *s);
 void print_binary(unsigned int n);
 #endif

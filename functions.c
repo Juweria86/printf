@@ -41,7 +41,7 @@ int print_string(char *s)
  * print_number -function that prints an integer
  * @n: an integer
  */
-void print_number(int n)
+int print_number(int n)
 {
 	int tmp_n = n;
 	int n1 = 0;
@@ -52,7 +52,7 @@ void print_number(int n)
 	if (n == 0)
 	{
 		_putchar('0');
-		return;
+		return (1);
 	}
 	if (n < 0)
 	{
@@ -77,4 +77,5 @@ void print_number(int n)
 		_putchar(digits[i]);
 		i++;
 	}
+	return (n1);
 }
