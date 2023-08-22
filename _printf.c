@@ -7,7 +7,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int print_char = 0;
+	int char_print = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format != '%')
-			print_char += _putchar(*format);
+			char_print += _putchar(*format);
 		else
 		{
 			format++;
@@ -24,21 +24,21 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case '%':
-					print_char += _putchar('%');
+					char_print+= _putchar('%');
 					break;
 				case 'c':
-					print_char += _putchar(va_arg(args, int));
+					char_print += _putchar(va_arg(args, int));
 					break;
 				case 's':
-					print_char += print_string(va_arg(args, char *));
+					char_print += print_string(va_arg(args, char *));
 					break;
 				case 'i':
 				case 'd':
-					print_char += print_number(va_arg(args, int));
+					char_print += print_number(va_arg(args, int));
 					break;
 				default:
-					print_char += _putchar('%');
-					print_char += _putchar(*format);
+					char_print += _putchar('%');
+					char_print += _putchar(*format);
 					break;
 			}
 		}
