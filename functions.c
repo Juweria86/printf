@@ -44,39 +44,39 @@ int print_string(char *s)
  */
 int print_number(int n)
 {
-	int tmp_n = n;
-	int n1 = 0;
-	int index, i = 0;
-	char digits[12];
+        int tmp_n = n;
+        int n1 = 0;
+        int index, i = 0;
+        char digits[12];
 
 
-	if (n == 0)
-	{
-		_putchar('0');
-		return (1);
-	}
-	if (n < 0)
-	{
-		_putchar('-');
-		tmp_n = -n;
-	}
-	while (tmp_n != 0)
-	{
-		tmp_n /= 10;
-		n1++;
-	}
-	index = n1 - 1;
-	tmp_n = n < 0 ? -n : n;
-	while (tmp_n != 0)
-	{
-		digits[index] = tmp_n % 10 + '0';
-		tmp_n /= 10;
-		index--;
-	}
-	while (i < n1)
-	{
-		_putchar(digits[i]);
-		i++;
-	}
-	return (n1);
+        if (n == 0)
+        {
+                _putchar('0');
+                return (0);
+        }
+        if (n < 0)
+        {
+                _putchar('-');
+                tmp_n = -n;
+        }
+        while (tmp_n != 0)
+        {
+                tmp_n /= 10;
+                n1++;
+        }
+        index = n1 - 1;
+        tmp_n = n < 0 ? -n : n;
+        while (tmp_n != 0)
+        {
+                digits[index] = tmp_n % 10 + '0';
+                tmp_n /= 10;
+                index--;
+        }
+        while (i < n1)
+        {
+                _putchar(digits[i]);
+                i++;
+        }
+        return (n1);
 }
