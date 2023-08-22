@@ -46,7 +46,7 @@ void print_number(int n)
 	int tmp_n = n;
 	int n1 = 0;
 	int index, i = 0;
-	char digits[9];
+	char digits[12];
 
 
 	if (n == 0)
