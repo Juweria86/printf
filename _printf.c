@@ -32,10 +32,6 @@ int _printf(const char *format, ...)
 				case 's':
 					char_print += print_string(va_arg(args, char *));
 					break;
-				case 'i':
-				case 'd':
-					char_print += print_number(va_arg(args, int));
-					break;
 				default:
 					char_print += _putchar('%');
 					char_print += _putchar(*format);
