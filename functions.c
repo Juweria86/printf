@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * print_char - Prints a char
- * @types: List a of arguments
+ * @args: List a of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: Width
@@ -18,7 +18,7 @@ int print_char(va_list args, char buffer[],
 }
 /**
  * print_string - Prints a string
- * @types: List a of arguments
+ * @args: List a of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -72,7 +72,7 @@ int print_string(va_list args, char buffer[],
 }
 /**
  * print_percent - Prints a percent sign
- * @types: Lista of arguments
+ * @args: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -93,7 +93,7 @@ int print_percent(va_list args, char buffer[],
 }
 /**
  * print_int - Print int
- * @types: Lista of arguments
+ * @args: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -135,7 +135,7 @@ int print_int(va_list args, char buffer[],
 }
 /**
  * print_binary - Prints an unsigned number
- * @types: Lista of arguments
+ * @args: Lista of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.

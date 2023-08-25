@@ -39,33 +39,33 @@ int get_flags(const char *format, int *i)
  */
 int get_precision(const char *format, int *i, va_list list)
 {
-        int currentIndex = *i + 1;
-        int precision = -1;
+	int currentIndex = *i + 1;
+	int precision = -1;
 
-        if (format[currentIndex] != '.')
-                return (precision);
-        precision = 0;
-        while (format[currentIndex] != '\0')
-        {
-                if (is_digit(format[currentIndex]))
-                {
-                        precision *= 10;
-                        precision += format[currentIndex] - '0';
-                }
-                else if (format[currentIndex] == '*')
-                {
-                        currentIndex++;
-                        precision = va_arg(list, int);
-                        break;
-                }
-                else
-                {
-                        break;
-                }
-                currentIndex++;
-        }
-        *i = currentIndex - 1;
-        return (precision);
+	if (format[currentIndex] != '.')
+		return (precision);
+	precision = 0;
+	while (format[currentIndex] != '\0')
+	{
+		if (is_digit(format[currentIndex]))
+		{
+			precision *= 10;
+			precision += format[currentIndex] - '0';
+		}
+		else if (format[currentIndex] == '*')
+		{
+			currentIndex++;
+			precision = va_arg(list, int);
+			break;
+		}
+		else
+		{
+			break;
+		}
+		currentIndex++;
+	}
+	*i = currentIndex - 1;
+	return (precision);
 }
 /**
  * get_size - Calculates the size to cast the argument
@@ -76,15 +76,15 @@ int get_precision(const char *format, int *i, va_list list)
  */
 int get_size(const char *format, int *i)
 {
-        int currentIndex = *i + 1;
-        int size = 0;
+	int currentIndex = *i + 1;
+	int size = 0;
 
-        if (format[currentIndex] == 'l')
-                size = S_LONG;
-        else if (format[currentIndex] == 'h')
-                size = S_SHORT;
-        *i = (size != 0) ? currentIndex : currentIndex - 1;
-        return (size);
+	if (format[currentIndex] == 'l')
+		size = S_LONG;
+	else if (format[currentIndex] == 'h')
+		size = S_SHORT;
+	*i = (size != 0) ? currentIndex : currentIndex - 1;
+	return (size);
 }
 /**
  * get_width - Calculates the width for printing
@@ -96,28 +96,28 @@ int get_size(const char *format, int *i)
  */
 int get_width(const char *format, int *i, va_list list)
 {
-        int currentIndex = *i + 1;
-        int width = 0;
+	int currentIndex = *i + 1;
+	int width = 0;
 
-        while (format[currentIndex] != '\0')
-        {
-                if (is_digit(format[currentIndex]))
-                {
-                        width *= 10;
-                        width += format[currentIndex] - '0';
-                }
-                else if (format[currentIndex] == '*')
-                {
-                        currentIndex++;
-                        width = va_arg(list, int);
-                        break;
-                }
-                else
-                {
-                        break;
-                }
-                currentIndex++;
-        }
-        *i = currentIndex - 1;
-        return (width);
+	while (format[currentIndex] != '\0')
+	{
+		if (is_digit(format[currentIndex]))
+		{
+			width *= 10;
+			width += format[currentIndex] - '0';
+		}
+		else if (format[currentIndex] == '*')
+		{
+			currentIndex++;
+			width = va_arg(list, int);
+			break;
+		}
+		else
+		{
+			break;
+		}
+		currentIndex++;
+	}
+	*i = currentIndex - 1;
+	return (width);
 }
