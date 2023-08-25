@@ -36,40 +36,41 @@ int get_flags(const char *format, int *i)
  * get_precision - Calculates the precision for printing
  * @format: Formatted string in which to print the arguments
  * @i: List of arguments to be printed.
- * @list: list of arguments.
- *
+ * @args: list of arguments.
  * Return: Precision.
  */
-int get_precision(const char *format, int *i, va_list list)
+int get_precision(const char *format, int *i, va_list args)
 {
-	int currentIndex = *i + 1;
+	int current_index = *i + 1;
 	int precision = -1;
 
-	if (format[currentIndex] != '.')
+	if (format[current_index] != '.')
 		return (precision);
+
 	precision = 0;
-	while (format[currentIndex] != '\0')
+
+	for (current_index += 1; format[current_index] != '\0'; current_index++)
 	{
-		if (is_digit(format[currentIndex]))
+		if (is_digit(format[current_index]))
 		{
 			precision *= 10;
-			precision += format[currentIndex] - '0';
+			precision += format[current_index] - '0';
 		}
-		else if (format[currentIndex] == '*')
+		else if (format[current_index] == '*')
 		{
-			currentIndex++;
-			precision = va_arg(list, int);
+			current_index++;
+			precision = va_arg(args, int);
 			break;
 		}
 		else
-		{
 			break;
-		}
-		currentIndex++;
 	}
-	*i = currentIndex - 1;
+
+	*i = current_index - 1;
+
 	return (precision);
 }
+
 /**
  * get_size - Calculates the size to cast the argument
  * @format: Formatted string in which to print the arguments
@@ -93,11 +94,10 @@ int get_size(const char *format, int *i)
  * get_width - Calculates the width for printing
  * @format: Formatted string in which to print the arguments.
  * @i: List of arguments to be printed.
- * @list: list of arguments.
- *
+ * @args: list of arguments.
  * Return: width.
  */
-int get_width(const char *format, int *i, va_list list)
+int get_width(const char *format, int *i, va_list args)
 {
 	int currentIndex = *i + 1;
 	int width = 0;
@@ -112,7 +112,7 @@ int get_width(const char *format, int *i, va_list list)
 		else if (format[currentIndex] == '*')
 		{
 			currentIndex++;
-			width = va_arg(list, int);
+			width = va_arg(args, int);
 			break;
 		}
 		else
