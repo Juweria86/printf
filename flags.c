@@ -49,7 +49,7 @@ int get_precision(const char *format, int *i, va_list args)
 
 	precision = 0;
 
-	for (curr_i += 1; format[current_index] != '\0'; curr_i++)
+	for (current_index += 1; format[current_index] != '\0'; current_index++)
 	{
 		if (is_digit(format[current_index]))
 		{
@@ -59,7 +59,7 @@ int get_precision(const char *format, int *i, va_list args)
 		else if (format[current_index] == '*')
 		{
 			current_index++;
-			precision = va_arg(list, int);
+			precision = va_arg(args, int);
 			break;
 		}
 		else
