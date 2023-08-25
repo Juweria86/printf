@@ -7,28 +7,31 @@
  */
 int get_flags(const char *format, int *i)
 {
-	int currentIndex = *i + 1;
-	int flags = 0, j;
-	const char flagCharacters[] = {'-', '+', '0', '#', ' ', '\0'};
-	const int flagValues[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
+	/* - + 0 # ' ' */
+	/* 1 2 4 8  16 */
+	int j, curr_index;
+	int flags = 0;
+	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
+	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
 
-	while (format[currentIndex] != '\0')
+	for (curr_index = *i + 1; format[curr_index] != '\0'; curr_index++)
 	{
-		for (j = 0; flagCharacters[j] != '\0'; j++)
-		{
-			if (format[currentIndex] == flagCharacters[j])
+		for (j = 0; FLAGS_CH[j] != '\0'; j++)
+			if (format[curr_index] == FLAGS_CH[j])
 			{
-				flags |= flagValues[j];
+				flags |= FLAGS_ARR[j];
 				break;
 			}
-		}
-		if (flagCharacters[j] == 0)
-			return (flags);
-		currentIndex++;
+
+		if (FLAGS_CH[j] == 0)
+			break;
 	}
-	*i = currentIndex - 1;
+
+	*i = curr_index - 1;
+
 	return (flags);
 }
+
 /**
  * get_precision - Calculates the precision for printing
  * @format: Formatted string in which to print the arguments
