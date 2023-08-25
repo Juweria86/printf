@@ -41,36 +41,29 @@ int get_flags(const char *format, int *i)
  */
 int get_precision(const char *format, int *i, va_list args)
 {
-	int current_index = *i + 1;
-	int precision = -1;
+    int current_index = *i + 1;
+    int precision = -1;
 
-	if (format[current_index] != '.')
-		return (precision);
+    if (format[current_index] != '.')
+        return -1;
 
-	precision = 0;
+    precision = 0;
+    current_index++;
 
-	for (current_index += 1; format[current_index] != '\0'; current_index++)
-	{
-		if (is_digit(format[current_index]))
-		{
-			precision *= 10;
-			precision += format[current_index] - '0';
-		}
-		else if (format[current_index] == '*')
-		{
-			current_index++;
-			precision = va_arg(args, int);
-			break;
-		}
-		else
-			break;
-	}
+    if (format[current_index] == '*') {
+        current_index++;
+        precision = va_arg(args, int);
+    } else {
+        while (is_digit(format[current_index])) {
+            precision *= 10;
+            precision += format[current_index] - '0';
+            current_index++;
+        }
+    }
 
-	*i = current_index - 1;
-
-	return (precision);
+    *i = current_index - 1;
+    return precision;
 }
-
 /**
  * get_size - Calculates the size to cast the argument
  * @format: Formatted string in which to print the arguments
